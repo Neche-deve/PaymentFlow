@@ -16,6 +16,8 @@ rule_files:
   - "alerts/backup.yml"
   - "alerts/transaction_queue.yml"
   - "alerts/leader_election.yml"
+  - "alerts/heap_usage.yml"
+  - "alerts/redis.yml"
 
 scrape_configs:
   - job_name: stellaredupay
