@@ -1,5 +1,19 @@
 /** @type {import('next').NextConfig} */
 
+// Bundle analyzer — enabled when ANALYZE=true (e.g. `ANALYZE=true npm run build`).
+// Generates an HTML treemap in .next/analyze/ showing every module's size.
+// @next/bundle-analyzer is listed in devDependencies and is never included in
+// the production bundle itself — it only wraps the Next.js config at build time.
+const withBundleAnalyzer = (() => {
+  try {
+    return require('@next/bundle-analyzer')({ enabled: process.env.ANALYZE === 'true' });
+  } catch {
+    // Package not installed (e.g. in a stripped-down environment); return a
+    // no-op wrapper so the rest of next.config.js continues to work normally.
+    return (cfg) => cfg;
+  }
+})();
+
 // External-origin allow-lists are defined in a single shared module so that
 // both this file (runtime policy) and tests/csp.test.js (assertions) stay in
 // sync automatically. To add a new origin, edit only cspSources.js.
@@ -86,4 +100,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+module.exports = withBundleAnalyzer(nextConfig);
