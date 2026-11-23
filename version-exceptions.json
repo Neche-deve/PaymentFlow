@@ -1,0 +1,4 @@
+{
+  "description": "Known major-version drift exceptions between root and workspace package.json files. Each entry documents why a workspace intentionally pins a different major version than the root. Reviewed quarterly — entries without a future review date are considered stale.",
+  "exceptions": []
+}
